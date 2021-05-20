@@ -6,7 +6,9 @@ import 'package:sqflite/sqflite.dart';
 import 'data/datasource/local/local_datasource.dart';
 import 'data/datasource/local/local_datasource_imp.dart';
 import 'data/datasource/remote/remote_datasource.dart';
-import 'data/datasource/remote/remote_datasource_imp.dart';
+import 'data/datasource/remote/remote_datasource_mock.dart';
+import 'data/repositories/beer_repository_impl.dart';
+import 'domain/repositories/beer_repository.dart';
 
 late Database beerDB;
 
@@ -19,8 +21,16 @@ Future<void> init() async {
   );
 
   Get
+    // Repository
+    ..lazyPut<BeerRepository>(
+      () => BeerRepositoryImpl(
+        localDatasource: Get.find(),
+        remoteDatasource: Get.find(),
+      ),
+    )
+
     // Datasource
-    ..lazyPut<RemoteDatasource>(() => RemoteDatasourceImp(Get.find()))
+    ..lazyPut<RemoteDatasource>(() => RemoteDatasourceMock())
     ..lazyPut<LocalDatasource>(() => LocalDataSourceImpl())
 
     // External
