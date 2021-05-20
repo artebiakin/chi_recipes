@@ -2,7 +2,8 @@ import '../../model/beer_model.dart';
 
 abstract class LocalDatasource {
   Future<void> onInit();
-  Future<List<BeerModel>> getSavedBeers([int? limit]);
-  Future<void> saveBeers(List<BeerModel> beers);
+  Future<List<BeerModel>> getSavedBeers();
+  Future<void> saveBeer(BeerModel beer);
+  Future<void> removeBeer(int id);
   Future<void> onDestroy();
 }

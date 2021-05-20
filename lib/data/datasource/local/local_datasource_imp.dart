@@ -20,7 +20,7 @@ class LocalDataSourceImpl extends LocalDatasource {
   }
 
   @override
-  Future<List<BeerModel>> getSavedBeers([int? limit]) async {
+  Future<List<BeerModel>> getSavedBeers() async {
     try {
       final List<Map<String, dynamic>> maps = await _database.query(QUERY);
 
@@ -33,18 +33,25 @@ class LocalDataSourceImpl extends LocalDatasource {
   }
 
   @override
-  Future<void> saveBeers(List<BeerModel> beers) async {
-    return beers.forEach((element) async {
-      await _database.insert(
-        QUERY,
-        element.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
-    });
+  Future<void> saveBeer(BeerModel beer) async {
+    await _database.insert(
+      QUERY,
+      beer.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   @override
   Future<void> onDestroy() async {
     await _database.close();
+  }
+
+  @override
+  Future<void> removeBeer(int id) async {
+    await _database.delete(
+      QUERY,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
   }
 }

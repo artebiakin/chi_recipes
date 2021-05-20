@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:intl/intl.dart';
 
+import '../../domain/entities/beer.dart';
+
 class BeerModel {
   const BeerModel({
     required this.id,
@@ -20,6 +22,25 @@ class BeerModel {
     this.ph,
   });
 
+  factory BeerModel.fromDomain(Beer beer) {
+    return BeerModel(
+      id: beer.id,
+      name: beer.name,
+      tagline: beer.tagline,
+      firstBrewed: beer.firstBrewed,
+      description: beer.description,
+      imageUrl: beer.imageUrl,
+      abv: beer.abv,
+      ibu: beer.ibu,
+      targetFg: beer.targetFg,
+      targetOg: beer.targetOg,
+      ebc: beer.ebc,
+      srm: beer.srm,
+      ph: beer.ph,
+      attenuationLevel: beer.attenuationLevel,
+    );
+  }
+
   factory BeerModel.fromMap(Map<String, dynamic> map) {
     return BeerModel(
         id: map['id'],
@@ -37,6 +58,7 @@ class BeerModel {
         ph: map['ph'],
         attenuationLevel: double.parse(map['attenuation_level'].toString()));
   }
+
   factory BeerModel.fromJson(String source) =>
       BeerModel.fromMap(json.decode(source));
 
@@ -54,6 +76,25 @@ class BeerModel {
   final double? srm;
   final double? ph;
   final double attenuationLevel;
+
+  Beer toDomain() {
+    return Beer(
+      id: id,
+      name: name,
+      tagline: tagline,
+      firstBrewed: firstBrewed,
+      description: description,
+      imageUrl: imageUrl,
+      abv: abv,
+      ibu: ibu,
+      targetFg: targetFg,
+      targetOg: targetOg,
+      ebc: ebc,
+      srm: srm,
+      ph: ph,
+      attenuationLevel: attenuationLevel,
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return {
