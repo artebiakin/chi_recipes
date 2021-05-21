@@ -11,9 +11,9 @@ class LoadingView extends GetView<LoadingController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(),
-            Image.asset('assets/img/raster/Hi_Blob.png'),
+            const Text('Beer'),
             const Text(
-              'Mediacom',
+              'Beer app',
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ).paddingOnly(bottom: 20.0)

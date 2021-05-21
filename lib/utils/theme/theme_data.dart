@@ -27,42 +27,7 @@ class AppColors {
 }
 
 // Light theme data
-ThemeData get lightThemeData => ThemeData(
-    fontFamily: 'Montserrat',
-    brightness: Brightness.light,
-    scaffoldBackgroundColor: AppColors.lightGray,
-    accentColor: AppColors.accent,
-    primarySwatch: AppColors.accent,
-    highlightColor: Colors.transparent,
-    splashColor: Colors.transparent,
-    appBarTheme: AppBarTheme(
-      color: AppColors.white,
-      elevation: 15,
-      shadowColor: AppColors.black.withOpacity(.07),
-      centerTitle: true,
-      actionsIconTheme: const IconThemeData(color: AppColors.white),
-      iconTheme: const IconThemeData(color: AppColors.white),
-    ),
-    iconTheme: const IconThemeData(color: AppColors.black),
-    textTheme: TextTheme(
-      button: TextStyle(
-        fontSize: 14,
-        color: AppColors.black.withOpacity(.9),
-        fontWeight: FontWeight.w600,
-      ),
-      caption: TextStyle(
-        fontSize: 11,
-        color: AppColors.black.withOpacity(.5),
-        fontWeight: FontWeight.w600,
-      ),
-    ),
-    primaryTextTheme: TextTheme(
-      headline6: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w600,
-        color: AppColors.black.withOpacity(.8),
-      ),
-    ));
+ThemeData get lightThemeData => ThemeData();
 
 // Dark theme data
 ThemeData get darkThemeData => ThemeData(brightness: Brightness.dark);

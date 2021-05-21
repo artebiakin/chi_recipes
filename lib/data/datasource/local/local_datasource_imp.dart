@@ -14,8 +14,9 @@ class LocalDataSourceImpl extends LocalDatasource {
     _database = await openDatabase(
       'beer_database.db',
       onCreate: (db, _) => db.execute(
-        'CREATE TABLE $QUERY(id INTEGER PRIMARY KEY, name TEXT NOT NULL, tagline TEXT NOT NULL, firstBrewed TEXT NOT NULL, description TEXT NOT NULL, imageUrl TEXT NOT NULL, abv INTEGER NOT NULL, ibu INTEGER NOT NULL, targetFg INTEGER NOT NULL, targetOg INTEGER NOT NULL, ebc INTEGER, srm INTEGER, ph INTEGER, attenuationLevel INTEGER NOT NULL)',
+        'CREATE TABLE $QUERY(id INTEGER PRIMARY KEY, name TEXT NOT NULL, tagline TEXT NOT NULL, first_brewed TEXT NOT NULL, description TEXT NOT NULL, image_url TEXT NOT NULL, abv INTEGER NOT NULL, ibu INTEGER NOT NULL, target_fg INTEGER NOT NULL, target_og INTEGER NOT NULL, ebc INTEGER, srm INTEGER, ph INTEGER, attenuation_level INTEGER NOT NULL)',
       ),
+      version: 1,
     );
   }
 
@@ -52,6 +53,16 @@ class LocalDataSourceImpl extends LocalDatasource {
       QUERY,
       where: 'id = ?',
       whereArgs: [id],
+    );
+  }
+
+  @override
+  Future<void> update(BeerModel beer) async {
+    await _database.update(
+      QUERY,
+      beer.toMap(),
+      where: 'id = ?',
+      whereArgs: [beer.id],
     );
   }
 }

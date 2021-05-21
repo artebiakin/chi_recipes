@@ -5,5 +5,6 @@ abstract class LocalDatasource {
   Future<List<BeerModel>> getSavedBeers();
   Future<void> saveBeer(BeerModel beer);
   Future<void> removeBeer(int id);
+  Future<void> update(BeerModel beer);
   Future<void> onDestroy();
 }

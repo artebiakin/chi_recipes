@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:sqflite/sqflite.dart' as db;
 import 'package:sqflite/sqflite.dart';
 
 import 'data/datasource/local/local_datasource.dart';
@@ -13,13 +12,6 @@ import 'domain/repositories/beer_repository.dart';
 late Database beerDB;
 
 Future<void> init() async {
-  beerDB = await db.openDatabase(
-    'beer_database.db',
-    onCreate: (db, _) => db.execute(
-      'CREATE TABLE dogs(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)',
-    ),
-  );
-
   Get
     // Repository
     ..lazyPut<BeerRepository>(

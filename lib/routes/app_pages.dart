@@ -18,5 +18,16 @@ class AppPages {
       page: () => LoadingView(),
       binding: LoadingBinding(),
     ),
+    GetPage(
+      name: Routes.DETAILS,
+      page: () => DetailsView(),
+      binding: DetailsBinding(),
+    ),
+    GetPage(
+      name: Routes.EDIT,
+      page: () => const EditView(),
+      binding: EditBinding(),
+      fullscreenDialog: true,
+    ),
   ];
 }

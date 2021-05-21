@@ -11,7 +11,7 @@ class RemoteDatasourceMock extends RemoteDatasource {
   Future<List<BeerModel>> getBeer({int limit = 20, int offset = 1}) async {
     try {
       final response = jsonDecode(data);
-      final listJson = response.data as List;
+      final listJson = response as List;
 
       final beers = listJson.map((e) => BeerModel.fromMap(e)).toList();
 
